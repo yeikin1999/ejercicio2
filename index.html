@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head>
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<style>
+#map {
+width: 100%;
+height: 600px;
+box-shadow: 5px 5px 5px #888;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
++ 'contributors',
+maxZoom: 18
+});
+
+var map = L.map('map', {
+center: [1.614433, -75.609455],
+zoom: 14,
+layers: osm,
+scrollWheelZoom: false,
+});
+
+var universidad = L.marker([1.620, -75.604], {
+draggable: true,
+title: 'Universidad'
+}).addTo(map)
+.bindPopup('Universidad de Amazonia')
+.openPopup();
+
+var MarkAlcaldia = L.marker([1.6150, -75.6138], {
+draggable: true,
+title: 'Alcaldia'
+}).addTo(map)
+.bindPopup('Alcaldia de Florencia')
+.openPopup();
+
+
+var ParqueSantander = L.marker([1.6152, -75.6132],{
+draggable: true,
+title: 'Parque santander'
+}).addTo(map)
+.bindPopup('Parque Principal Santander')
+.openPopup();
+
+var ParqueSantanderPolygon = L.polygon([
+[1.6151, -75.6137],
+[1.6153, -75.6130],
+[1.6146, -75.6128],
+[1.6145, -75.6134]
+]).addTo(map).bindPopup('Parque principal santander');
+
+var pointA = new L.LatLng(1.621636252593286, -75.5924416716648);
+var pointB = new L.LatLng(1.6207353911209326, -75.59669029072073);
+var pointC = new L.LatLng(1.6186548285701772, -75.59703361347273);
+var pointD = new L.LatLng(1.6188264214386883, -75.59939395739269);
+var pointE = new L.LatLng(1.618547583019979, -75.59993039919267);
+var pointF = new L.LatLng(1.6198988765377333, -75.60278426956863);
+var latlngs = [pointA, pointB, pointC, pointD, pointE, pointF,];
+var polyline = L.polyline(
+latlngs, {color: 'red'}
+)
+.addTo(map)
+.bindPopup ('Yeikin Andres Mena Vargas');
+
+var Alcaldia = L.circle([1.6150, -75.6138], 500, {
+color: 'red',
+fillColor: '#f03',
+fillOpacity: 0.5
+}).addTo(map);
+circle.bindPopup("Alcaldia");
+
+L.control.scale().addTo(map);
+</script>
+</body>
+</html>
